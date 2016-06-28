@@ -1,0 +1,19 @@
+"*":
+  core:
+    themes: [
+      "nucleus-dark-ui"
+      "atom-dark-syntax"
+    ]
+    ignoredNames: [
+      ".DS_Store"
+      "sass-cache"
+      "tmp"
+    ]
+  editor:
+    invisibles: {}
+  emmet: {}
+  "exception-reporting":
+    userId: "64c0fc0b-6a71-e7e5-5fae-f090d832d3aa"
+  "one-dark-ui": {}
+  welcome:
+    showOnStartup: false

@@ -14,6 +14,10 @@ See [Packages](https://github.com/mateusortiz/atom-preferences/tree/master/packa
 
 See [icon](https://github.com/mateusortiz/atom-preferences/tree/master/icon) I use.
 
+## Theme
+
+TODO *- convert [SunnyVale](https://github.com/mateusortiz/sunnyvale-theme) dark theme for Atom.
+
 ## Contributing
 
 1. Fork it!

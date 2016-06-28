@@ -1,0 +1,16 @@
+".text.html":
+  "polymer element, external styles":
+    "prefix": "pes"
+    "body": """
+    <dom-module id="$1">
+      <template>
+        <style include="$1"></style>
+        $2
+      </template>
+      <script>
+        Polymer({
+          is: '$1'
+        });
+      </script>
+    </dom-module>
+    """

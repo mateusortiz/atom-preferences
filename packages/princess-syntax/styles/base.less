@@ -1,0 +1,400 @@
+@import "syntax-variables";
+
+atom-text-editor, atom-text-editor::shadow, :host {
+  background-color: @syntax-background-color;
+  color: @syntax-text-color;
+
+  .wrap-guide {
+    background-color: @syntax-wrap-guide-color;
+  }
+
+  .indent-guide {
+    color: @syntax-indent-guide-color;
+  }
+
+  .invisible-character {
+    color: @syntax-invisible-character-color;
+  }
+
+  .gutter {
+    background-color: @syntax-gutter-background-color;
+    color: @syntax-gutter-text-color;
+
+    .line-number {
+      &.cursor-line {
+        background-color: @syntax-gutter-background-color-selected;
+        color: @syntax-gutter-text-color-selected;
+      }
+
+      &.cursor-line-no-selection {
+        color: @syntax-gutter-text-color-selected;
+      }
+    }
+
+    &:not(.git-diff-icon) .line-number {
+      @line-number-padding: 1em;
+      padding-left: @line-number-padding;
+      
+      &.git-line-added, &.git-line-modified {
+        @git-margin-indicator-width: 0.5em;
+        border-left-width: @git-margin-indicator-width;
+        padding-left: calc(@line-number-padding ~" - " @git-margin-indicator-width);
+      }
+    }
+  }
+
+  .gutter .line-number.folded,
+  .gutter .line-number:after,
+  .fold-marker:after {
+    color: @pink-hot;
+  }
+
+  .invisible {
+    color: @syntax-text-color;
+  }
+
+  .cursor {
+    color: @syntax-cursor-color;
+  }
+
+  .selection .region {
+    background-color: @syntax-selection-color;
+  }
+}
+
+atom-text-editor .search-results .marker .region,
+:host .search-results .marker .region {
+  background-color: transparent;
+  border: 1px solid @syntax-result-marker-color;
+}
+
+atom-text-editor .search-results .marker.current-result .region,
+:host .search-results .marker.current-result .region {
+  border: 1px solid @syntax-result-marker-color-selected;
+}
+
+.comment {
+  color: @purple;
+  font-style: italic;
+  
+  .punctuation {
+    color: fade(@purple, 35);
+  }
+  
+  &.line, &.block {
+    background: fade(@purple, 8);
+  }
+}
+
+.entity {
+  &.name.type {
+    color: @teal-dark;
+  }
+
+  &.other.inherited-class {
+    color: @teal;
+  }
+}
+
+.keyword {
+  color: @pink-hot;
+
+  &.control {
+    color: @pink-hot;
+  }
+
+  &.operator {
+    color: @teal-dark;
+  }
+
+  &.other.special-method {
+    color: @magenta;
+  }
+
+  &.other.unit {
+    color: @orange;
+  }
+}
+
+.storage {
+  color: mix(@pink-dark, @purple);
+  font-weight: bold;
+}
+
+.constant {
+  color: @orange;
+
+  &.character.escape {
+    color: @magenta;
+  }
+
+  &.numeric {
+    color: @orange-dark;
+  }
+
+  &.other.color {
+    // color: @cyan;
+  }
+
+  &.other.symbol {
+    color: @teal;
+    .punctuation.definition {
+      color: mix(@teal, @blue);
+    }
+  }
+}
+
+.variable {
+  // color: @red;
+  color: @orange-dark;
+
+  &.block {
+    color: @teal-dark;
+  }
+  &.punctuation.separator {
+    color: @teal;
+  }
+
+  &.interpolation {
+    // color: darken(@red, 10%);
+  }
+
+  &.parameter.function {
+    color: @teal-dark;
+  }
+}
+.function.method { // huh? I dunno, seems to be ruby function definitions
+  color: @teal;
+}
+
+.invalid.illegal {
+  background: @pink-hot;
+}
+
+.string {
+  color: @green-dark;
+  background: fade(@green, 10);
+  
+  .punctuation {
+    background: none;
+    &.string, &.embedded {
+      color: fade(@green-dark, 50);
+    }
+  }
+
+  &.regexp {
+    color: @teal;
+    background: fade(@teal, 10);
+
+    .regexp.group {
+      background: none;
+    }
+    .punctuation {
+      &.regexp, &.group, &.embedded {
+        color: fade(@teal, 50);
+      }
+    }
+  }
+  
+  .embedded {
+    color: @orange;
+  }
+
+  &.other.link {
+    // color: @red;
+  }
+}
+
+.punctuation {
+  &.definition {
+    &.comment {
+      // color: @light-gray;
+    }
+    
+    &.variable {
+      color: @orange;
+    }
+
+    &.string,
+    &.variable,
+    &.parameters,
+    &.array {
+      // color: @syntax-text-color;
+    }
+
+    &.heading,
+    &.identity {
+      color: @blue;
+    }
+
+    &.bold {
+      // color: @light-orange;
+      font-weight: bold;
+    }
+
+    &.italic {
+      color: @purple;
+      font-style: italic;
+    }
+  }
+
+  &.section.embedded {
+    // this might be where I should bold the embedded punctuation
+  }
+
+}
+
+.support {
+  &.class {
+    color: @magenta;
+  }
+
+  &.function  {
+    // color: @cyan;
+    // color: @teal;
+
+    &.any-method {
+      color: @blue;
+    }
+  }
+}
+
+.entity {
+  &.name.function {
+    color: @blue;
+  }
+
+  &.name.class, &.name.type.class {
+    // color: @light-orange;
+  }
+
+  &.name.section {
+    color: @blue;
+  }
+
+  &.name.tag {
+    // color: @red;
+    // text-decoration: underline;
+    color: @pink-hot;
+    
+    &.id {
+      color: @blue;
+    }
+    &.class{
+      color: @orange;
+    }
+  }
+
+  &.other.attribute-name {
+    color: @orange;
+    
+    .punctuation.separator {
+      color: @teal-dark;
+    }
+
+    &.id {
+      color: @blue;
+    }
+  }
+}
+
+.attributes .entity.other.attribute-name {
+  color: @purple;
+}
+
+.tag .punctuation.definition {
+  color: @magenta;
+}
+
+.meta {
+  &.class {
+    // color: @light-orange;
+  }
+
+  &.link {
+    color: @orange;
+  }
+
+  &.require {
+    color: @blue;
+  }
+
+  &.selector {
+    color: @purple;
+  }
+
+  &.separator {
+    // background-color: @gray;
+    color: @syntax-text-color;
+  }
+}
+
+.none {
+  color: @syntax-text-color;
+}
+
+.markup {
+  &.bold {
+    // color: @orange;
+    // background-color: @pink-light;
+    background-color: fade(@pink-hot, 10);
+    font-weight: bold;
+  }
+
+  &.changed {
+    color: @purple;
+  }
+
+  &.deleted {
+    // color: @red;
+  }
+
+  &.italic {
+    // color: @orange-dark;
+    // background-color: @pink-light;
+    background-color: fade(@pink-hot, 10);
+    font-style: italic;
+  }
+
+  &.heading .punctuation.definition.heading {
+    color: @blue;
+  }
+
+  &.inserted {
+    // color: @green;
+  }
+
+  &.list {
+    // color: @red;
+  }
+
+  &.quote {
+    color: @orange;
+  }
+
+  &.raw {
+    color: @teal;
+    background: fade(@teal, 10);
+  }
+  
+  &.strike {
+    color: @purple;
+    text-decoration: line-through;
+  }
+}
+
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+  &.heading {
+    color: @magenta;
+
+    .marker {
+      color: fade(@magenta, 50);
+    }
+  }
+}
+
+atom-text-editor[mini] .scroll-view,
+:host([mini]) .scroll-view {
+  padding-left: 1px;
+}

@@ -1,0 +1,10 @@
+".text.html":
+  "paper radio group":
+    "prefix": "paper-radio-group"
+    "body": """
+    <paper-radio-group selected="${1:small}">
+      <paper-radio-button name="${2:small}">${3:Small}</paper-radio-button>
+      <paper-radio-button name="${4:medium}">${5:Medium}</paper-radio-button>
+      <paper-radio-button name="${6:large}">${7:Large}</paper-radio-button>
+    </paper-radio-group>
+    """

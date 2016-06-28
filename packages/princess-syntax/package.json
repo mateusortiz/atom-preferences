@@ -1,0 +1,40 @@
+{
+  "name": "princess-syntax",
+  "theme": "syntax",
+  "version": "0.1.3",
+  "description": "A bright syntax theme, with plenty of pink and purple.",
+  "keywords": [
+    "syntax",
+    "theme",
+    "light",
+    "bright"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duien/princess-syntax.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "readme": "# Princess Syntax Theme\n\nA bright syntax theme, with plenty of pink and purple. It's mostly optimized for Ruby, with occasional JavaScript, CSS, and markup. More improvements will probably be coming, but it's also possible I'll get bored and move on. Use at your own risk.\n\n![Ruby syntax example](https://raw.githubusercontent.com/duien/princess-syntax/master/screenshots/ruby_princess.png)\n\nThe font used in the screenshot is [Input from FontBureau](http://input.fontbureau.com/preview/?size=14&language=python&theme=monokai&family=InputMono&width=300&weight=300&line-height=1.2&a=0&g=0&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=default&customize=please). It's extremely configurable, so I've linked to my particular settings.\n\nIf you'd like your current line to be highlighted, you can add the following snippet to your user stylesheet. It's scoped so that it will affect only this syntax theme, and includes an alternate color suggestion for the highlight line as well.\n\n```less\n.theme-princess-syntax {\n  @pink-light: #ffb1de;\n  @blue: #6be5fd;\n  \n  @current-line-highlight: fade(@blue, 10);\n  \n  atom-text-editor.is-focused,\n  atom-text-editor.is-focused::shadow,\n  :host(.is-focused) {\n    .line-number.cursor-line {\n      background: @current-line-highlight;\n    }\n    .line.cursor-line {\n      background:@current-line-highlight;\n    }\n  }\n}\n```\n\nIf you'd like the look of the centered indent guides shown in the screenshot, rather than the left-aligned ones that Atom defaults to, you can add the following snippet to your user stylesheet:\n\n```less\natom-text-editor, atom-text-editor::shadow, :host {\n  // Shift indent guides to align vertically with center of column\n  .indent-guide {\n    @indent-offset: 4px; // This might need tweaking depending on font and size\n    @guide-width: 1px;\n    box-shadow: none;\n    background: linear-gradient(90deg, // replace box-shadow with gradient\n      transparent,\n      transparent @indent-offset,\n      @syntax-indent-guide-color @indent-offset,\n      @syntax-indent-guide-color @indent-offset + @guide-width,\n      transparent @indent-offset + @guide-width)\n  }\n}\n```\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/duien/princess-syntax/issues"
+  },
+  "homepage": "https://github.com/duien/princess-syntax#readme",
+  "_id": "princess-syntax@0.1.3",
+  "_shasum": "e3d9d06ae16dda4da9a4de17d4448b67f730eb9a",
+  "_resolved": "file:../d-116230-8245-1rrib1r/package.tgz",
+  "_from": "../d-116230-8245-1rrib1r/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "polymer-snippets",
+  "main": "./lib/polymer-snippets",
+  "version": "3.1.1",
+  "description": "Polymer Snippets for Atom",
+  "author": {
+    "name": "Rob Dodson",
+    "email": "robdodson@google.com",
+    "url": "http://robdodson.me"
+  },
+  "maintainers": [
+    {
+      "name": "Mateus Ortiz",
+      "email": "mateus.prado@ig.com.br"
+    }
+  ],
+  "activationCommands": {
+    "atom-text-editor": [
+      "polymer-snippets:toggle"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robdodson/atom-PolymerSnippets.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {},
+  "readme": "# Polymer Snippets for Atom\n\n![banner](http://s12.postimg.org/opgzpvtpp/banner.png)\n\n## Install\nGo to `atom > Preferences...` then search for Polymer Snippets in the `Install` tab.\n\n## Compatibility with Emmet\nIf you have [Emmet](https://github.com/emmetio/emmet-atom) installed it will clobber the tab completion for HTML snippets. You can follow [this workaround](https://github.com/emmetio/emmet-atom/issues/225#issuecomment-82669798) to get Polymer snippets working again.\n\n## Elements\n\nType the name of [any `iron-*` or `paper-*` element](https://elements.polymer-project.org/), then hit `tab` to auto complete. Ex:\n\n![snippet1](https://cloud.githubusercontent.com/assets/1066253/8414154/cfcc68ba-1e4a-11e5-9363-e8a92f524ed3.gif)\n\n## Polymer\n\n### [pe] polymer element\n\n```html\n<dom-module id=\"${1}\">\n  <template>\n    <style>\n      :host {\n        display: block;\n      }\n    </style>\n    $2\n  </template>\n  <script>\n    Polymer({\n      is: '$1'\n    });\n  </script>\n</dom-module>\n```\n\n### [pe2015] polymer element ES2015\n\n```html\n<dom-module id=\"${2}\">\n  <template>\n    <style>\n      :host {\n        display: block;\n      }\n    </style>\n\n  </template>\n  <script>\n    (function (Polymer) {\n      'use strict';\n      class ${1} {\n        beforeRegister() {\n          this.is = '${2}';\n\n          this.properties = {\n            ${3}\n          };\n        }\n\n        attached() {\n        }\n      }\n\n      Polymer(${1});\n    })(Polymer);\n  </script>\n</dom-module>\n```\n\n### [pes] polymer element with external stylesheet\n\n```html\n<dom-module id=\"$1\">\n  <link rel=\"import\" type=\"css\" href=\"$1.css\">\n  <template>\n    $2\n  </template>\n  <script>\n    Polymer({\n      is: '$1'\n    });\n  </script>\n</dom-module>\n```\n\n### [pb] polymer behavior\n\n```javascript\n$2Behavior = {\n  properties: {\n    $3\n  }\n};\n```\n\n### [pbi] polymer behavior implement\n\n```javascript\n$2BehaviorImpl = {\n  properties: {\n    $3\n  }\n};\n\n$2Behavior = [$2BehaviorImpl];\n```\n\n### [pcst] Polymer custom-style template\n```html\n<dom-module id=\"${1:shared-styles}\">\n  <template>\n    <style>\n      $0\n    </style>\n  </template>\n</dom-module>\n```\n\n### [pcs] Polymer custom-style template\n```html\n<style ${1:is=\"custom-style\"} include=\"${0:shared-styles}\"></style>\n```\n\n### [arrsel] Array selector\n\n```html\n<array-selector id=\"${1:selector}\"\n    \titems=\"{{${2:array}}}\" selected=\"{{${3:selected}}}\"\n    \t${4:multi} ${5:toggle}>\n</array-selector>\n```\n\n### [dom-if] Template dom-if\n\n```html\n<template is=\"dom-if\" if=\"$1\"${2: restamp=\"true\"}>$0</template>\n```\n\n### [dom-repeat] Template dom-repeat\n\n```html\n<template is=\"dom-repeat\" items=\"$1\"${2: index-as=\"index\"}>$0</template>\n```\n\n### [domb] Template dom-bind\n\n```html\n<template is=\"dom-bind\">\n  $0\n</template>\n```\n\n### [webcomponents] web components polyfill\n\n```html\n<script src=\"${0:bower_components}/webcomponentsjs/webcomponents-lite.js\"></script>\n```\n\n### [wcs] load web components polyfill when not supported\n\n```javascript\n// Load Web Components when not supported\nvar webComponentsSupported = ('registerElement' in document\n    && 'import' in document.createElement('link')\n    && 'content' in document.createElement('template'));\n\nif (!webComponentsSupported) {\n  var script = document.createElement('script');\n  script.src = '${0:bower_components}/webcomponentsjs/webcomponents-lite.js';\n  document.head.appendChild(script);\n}\n```\n\n### [hi] html import\n\n```html\n<link rel=\"import\" href=\"${1:bower_components}/${0}/${0}.html\">\n```\n\n### [hii] html import iron-* element\n\n```html\n<link rel=\"import\" href=\"${1:bower_components}/iron-${2}/iron-${2}.html\">\n```\n\n### [hip] html import paper-* element\n\n```html\n<link rel=\"import\" href=\"{1:bower_components}/paper-$2/paper-$2.html\">\n```\n\n## Web Components\n\n### [template] template\n```html\n<template$1>$0</template>\n```\n\n### [ce] custom element\n\n```javascript\nvar ${4:tmpl} = document.querySelector('${5:template}');\n\nvar ${1:WidgetProto} = Object.create(HTMLElement.prototype);\n\n${1:WidgetProto}.createdCallback = function() {\n  var root = this.createShadowRoot();\n  root.appendChild(document.importNode(${4:tmpl}.content, true));\n};\n\nvar ${2:Widget} = document.registerElement('${3:my-widget}', {\n  prototype: ${1:WidgetProto}\n});\n```\n\n## HTML\n\n### [ph] HTML template with Web Components polyfill\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n\n  <title>${1}</title>\n  <meta name=\"description\" content=\"${2}\">\n\n  <!-- Mobile -->\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n\n  <!-- Chrome / Android -->\n  <meta name=\"mobile-web-app-capable\" content=\"yes\">\n  <meta name=\"theme-color\" content=\"black\">\n  <link rel=\"icon\" href=\"icon.png\">\n\n  <!-- Safari / iOS -->\n  <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n  <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n  <link rel=\"apple-touch-icon-precomposed\" href=\"apple-touch-icon.png\">\n\n  <!-- Web Components -->\n  <script src=\"bower_components/webcomponentsjs/webcomponents-lite.js\"></script>\n</head>\n<body unresolved>\n  $0\n</body>\n</html>\n```\n\n### [phs] HTML template with Web Components polyfill load when not supported by browser\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n\n  <title>${1}</title>\n  <meta name=\"description\" content=\"${2}\">\n\n  <!-- Mobile -->\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n\n  <!-- Chrome / Android -->\n  <meta name=\"mobile-web-app-capable\" content=\"yes\">\n  <meta name=\"theme-color\" content=\"black\">\n  <link rel=\"icon\" href=\"icon.png\">\n\n  <!-- Safari / iOS -->\n  <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n  <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n  <link rel=\"apple-touch-icon-precomposed\" href=\"apple-touch-icon.png\">\n\n  <!-- Check if Web Components are supported-->\n  <script>\n    var webComponentsSupported = ('registerElement' in document\n        && 'import' in document.createElement('link')\n        && 'content' in document.createElement('template'));\n\n    if (!webComponentsSupported) {\n      var script = document.createElement('script');\n      script.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';\n      document.head.appendChild(script);\n    }\n  </script>\n</head>\n<body unresolved>\n  $0\n</body>\n</html>\n```\n\n## Contributing\n\n1. Fork it!\n2. Create your feature branch: `git checkout -b my-new-feature`\n3. Commit your changes: `git commit -m 'Add some feature'`\n4. Push to the branch: `git push origin my-new-feature`\n5. Submit a pull request :D\n\n## License\n\n[MIT License](http://robdodson.mit-license.org/) © Rob Dodson\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/robdodson/atom-PolymerSnippets/issues"
+  },
+  "homepage": "https://github.com/robdodson/atom-PolymerSnippets#readme",
+  "_id": "polymer-snippets@3.1.1",
+  "_shasum": "5a71f9a28e33a83474324e441b7eca769b453111",
+  "_resolved": "file:../d-116528-1451-fqm1z4/package.tgz",
+  "_from": "../d-116528-1451-fqm1z4/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

@@ -8,9 +8,11 @@ See [configurations](https://github.com/mateusortiz/atom-preferences/blob/master
 
 ## Packages
 
-See [Packages](https://github.com/mateusortiz/atom-preferences/tree/master/packages) for installed. 
+See [Packages](https://github.com/mateusortiz/atom-preferences/tree/master/packages) for installed.
 
-TODO: Write usage instructions
+## Icon
+
+See [icon](https://github.com/mateusortiz/atom-preferences/tree/master/icon) I use.
 
 ## Contributing
 
